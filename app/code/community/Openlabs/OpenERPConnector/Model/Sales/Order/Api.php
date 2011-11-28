@@ -68,7 +68,7 @@ class Openlabs_OpenERPConnector_Model_Sales_Order_Api extends Mage_Sales_Model_O
         }
 	}
 	
-	/* Récupère l'increment_id de la commande fille créée, retourne un string exemple : 100004997-1 */
+	/* Retrieve increment_id of the child order */
     public function getOrderChild($incrementId) {
     	
         $order = Mage::getModel('sales/order')->loadByIncrementId($incrementId);
@@ -86,7 +86,7 @@ class Openlabs_OpenERPConnector_Model_Sales_Order_Api extends Mage_Sales_Model_O
         }
     }
     
-    /* Récupère l'increment_id de la commande mère annulée, retourne un string exemple : 100004997 */
+    /* Retrieve increment_id of the parent order */
     public function getOrderParent($incrementId) {
     	
     	$order = Mage::getModel('sales/order')->loadByIncrementId($incrementId);
