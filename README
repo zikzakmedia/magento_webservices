@@ -1,0 +1,17 @@
+==Magento Extended Webservices==
+
+This Module add news webservices Magento. This module was designed by OpenERP Connector, but you can use some project need extend Magento Webservices.
+
+Extended Webservices:
+  * Website Management
+  * Groups Management (store)
+  * Stores Management
+  * Product Images
+  * Groups Management (customer)
+  * Address Management
+  * Subscriber Management
+  * Customers Management
+  * Product Tier Price
+  * Attribute Set Management
+  * Product Link (configurables)
+  * Custom Sales Orders
