@@ -227,19 +227,33 @@ class Openlabs_OpenERPConnector_Model_Olcatalog_Product_Link extends Mage_Catalo
     /**
      * Set Configurables Atributes
      *
-     * @param int $superAttributeID
-     * @param array prices
-     * @return ID
+     * @param int $product
+     * @param int $attribute
+     * @return True
      */
-    public function setSuperAttributeValues($superAttributeID, array $prices)
+    public function setSuperAttributeValues($product, $attribute)
     {
-        $superAttr = Mage::getModel("catalog/product_type_configurable_attribute");
-        $superAttr->load($superAttributeID);
-        
-        //print_r($superAttr->getValues());
-        $superAttr->setValues($prices);
-        $superAttr->save();
-        return true;
+        #get if product exists
+        $product = Mage::getModel('catalog/product')->load($product)->getID();
+        if(!$product){
+            return False;
+        }
+        #get if attribute exists
+        $attribute = Mage::getModel('eav/config')->getAttribute('catalog_product', 'attribute_id')->load($attribute)->getID();
+        if(!$attribute){
+            return False;
+        }
+
+        #try add catalog_product_super_attribute
+        try {
+            $resource = Mage::getSingleton('core/resource');
+            $writeConnection = $resource->getConnection('core_write');
+            $query = 'INSERT INTO '.$resource->getTableName('catalog_product_super_attribute').' (product_id, attribute_id) VALUES ('.$product.', '.$attribute.');';
+            $writeConnection->query($query);
+            return True;
+        } catch (Exception $e) {
+            return False;
+        }
     }
 
     /**
