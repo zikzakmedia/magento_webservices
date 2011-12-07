@@ -68,7 +68,6 @@ class Openlabs_OpenERPConnector_Model_Olcatalog_Product_Attribute extends Mage_C
 
 	public function info($attributeId) {
 		try {
-			return 'hello';
 			$attribute = Mage :: getModel('catalog/product')->getResource()->getAttribute($attributeId);
 			return $attribute->toArray();
 		} catch (Exception $e) {
